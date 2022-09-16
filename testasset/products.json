@@ -1,0 +1,119 @@
+{
+    "success": true,
+    "products": [
+        {
+            "id": "6315a61b49aebebb9a7b8884",
+            "name": "Iphone 14",
+            "description": "iPhone 13 128GB Chính hãng (VN/A) bán tại Di Động Việt - Đại lý uỷ quyền chính thức của Apple tại Việt Nam, iPhone 13 là phiên bản quốc tế 2 sim (Nano + Esim) chính hãng VN/A. Máy chưa Active + nguyên seal hộp, mới 100% (Fullbox)",
+            "price": 2000,
+            "offerPrice": "200",
+            "ratings": 5,
+            "images": [
+                {
+                    "public_id": "Ecommerce/products/yibmpul0yzihobsvnefb",
+                    "url": "https://res.cloudinary.com/djas4pyjx/image/upload/v1662363161/Ecommerce/products/yibmpul0yzihobsvnefb.png",
+                    "id": "6315a61b49aebebb9a7b8885"
+                },
+                {
+                    "public_id": "Ecommerce/products/w2pgihsjan73loos0anx",
+                    "url": "https://res.cloudinary.com/djas4pyjx/image/upload/v1662363163/Ecommerce/products/w2pgihsjan73loos0anx.png",
+                    "id": "6315a61b49aebebb9a7b8886"
+                }
+            ],
+            "category": "Electronics",
+            "Stock": 9,
+            "numOfReviews": 1,
+            "user": "631599981f95913da34f1a96",
+            "createAt": "2022-09-05T07:30:01.470Z",
+            "reviews": [
+                {
+                    "user": "631599981f95913da34f1a96",
+                    "name": "Harry",
+                    "rating": 5,
+                    "comment": "\"Dạ chào Chị !\r\n \r\nCám ơn Chị đã quan tâm đến Di Động Việt.\r\n \r\nHiện tại sản phẩm mình quan tâm vẫn còn hàng Chị vui lòng liên hệ 1800 6018 (Miễn phí cước gọi) bên em sẽ kiểm tra tồn kho gần nhất và hỗ trợ Chị được tốt nhất ạ\r\n\r\nXin thông tin đến Chị ạ.\"",
+                    "time": "2022-09-05T07:30:01.470Z",
+                    "id": "6315a63b49aebebb9a7b88a0"
+                }
+            ],
+            "__v": 1
+        },
+        {
+            "id": "631812f002f50d4a3087584d",
+            "name": "Macbook Pro 14",
+            "description": "Macbook Pro 14 inch 2021 - M1 Pro 8CPU-14GPU/ 16G/ 512G\r\nChip M1 Pro và M1 Max nâng tầm tốc độ xử lý của Macbook lên một tầm cao mới - và lần đầu tiên, chúng mang một hệ thống trên kiến trúc chip (SoC) vào một máy tính xách tay chuyên nghiệp. Cả hai đều có nhiều lõi CPU hơn, nhiều lõi GPU hơn và nhiều bộ nhớ hợp nhất hơn so với M1. Cùng với Công cụ thần kinh mạnh mẽ cho máy học siêu nạp và công cụ đa phương tiện được nâng cấp với hỗ trợ ProRes, M1 Pro và M1 Max cho phép những người chuyên nghiệp làm những điều mà họ chưa từng có trước đây.\r\n\r\nChip M1 Pro - Nhanh đáng kinh ngạc\r\nChip M1 Pro nâng hiệu suất đặc biệt của kiến trúc M1 lên một cấp độ hoàn toàn mới cho người dùng chuyên nghiệp. Ngay cả những dự án tham vọng nhất cũng có thể dễ dàng xử lý với tối đa 10 lõi CPU, tối đa 16 lõi GPU, Công cụ thần kinh 16 lõi và các công cụ mã hóa và giải mã chuyên dụng hỗ trợ codec H.264, HEVC và ProRes.\r\n\r\nM1 Pro là sự kế thừa cho chip M1 mạnh mẽ đáng kể của Apple và nó cung cấp nhiều lõi CPU hơn, nhiều lõi GPU hơn, Media Engine tốt hơn và nhiều băng thông bộ nhớ hơn so với chip M1 vốn đã đáng kinh ngạc. M1 Max thậm chí còn mạnh hơn Pro và Macbook Pro 16 inch.Về thông số kỹ thuật, M1 Pro có CPU 10 lõi (8 lõi hiệu suất, 2 lõi hiệu quả) với GPU 16 lõi và Công cụ thần kinh 16 lõi.\r\n\r\nChip M1 Max cung cấp cùng một CPU 10 lõi, có GPU 32 lõi và gấp đôi băng thông bộ nhớ của M1 Max. Nó cũng cung cấp 2 công cụ mã hóa video và 2 công cụ mã hóa / giải mã ProRes.",
+            "price": 3000,
+            "offerPrice": "200",
+            "ratings": 0,
+            "images": [
+                {
+                    "public_id": "Ecommerce/products/ypebvwmagu9thuxprdmg",
+                    "url": "https://res.cloudinary.com/djas4pyjx/image/upload/v1662522095/Ecommerce/products/ypebvwmagu9thuxprdmg.webp",
+                    "id": "631812f002f50d4a3087584e"
+                },
+                {
+                    "public_id": "Ecommerce/products/aet3b4bgh5ac5lclrysq",
+                    "url": "https://res.cloudinary.com/djas4pyjx/image/upload/v1662522095/Ecommerce/products/aet3b4bgh5ac5lclrysq.jpg",
+                    "id": "631812f002f50d4a3087584f"
+                }
+            ],
+            "category": "Electronics",
+            "Stock": 9,
+            "numOfReviews": 0,
+            "user": "631599981f95913da34f1a96",
+            "createAt": "2022-09-07T03:23:18.615Z",
+            "reviews": [],
+            "__v": 0
+        },
+        {
+            "id": "63195994f923d0fb36316d79",
+            "name": "Gift",
+            "description": "Quà tặng hoặc quà tặng lưu niệm là một quà tặng chủ yếu bán đồ lưu niệm, kỷ vật và các mặt hàng khác liên quan đến một chủ đề hoặc chủ đề cụ thể.",
+            "price": 50,
+            "offerPrice": "",
+            "ratings": 0,
+            "images": [
+                {
+                    "public_id": "Ecommerce/products/ze9hghctnpbtegoafru7",
+                    "url": "https://res.cloudinary.com/djas4pyjx/image/upload/v1662605715/Ecommerce/products/ze9hghctnpbtegoafru7.webp",
+                    "id": "63195994f923d0fb36316d7a"
+                },
+                {
+                    "public_id": "Ecommerce/products/g0uaeuuknfzffzwkzfkw",
+                    "url": "https://res.cloudinary.com/djas4pyjx/image/upload/v1662605716/Ecommerce/products/g0uaeuuknfzffzwkzfkw.png",
+                    "id": "63195994f923d0fb36316d7b"
+                }
+            ],
+            "category": "Gift",
+            "Stock": 0,
+            "numOfReviews": 0,
+            "user": "631599981f95913da34f1a96",
+            "createAt": "2022-09-08T01:56:16.948Z",
+            "reviews": [],
+            "__v": 0
+        },
+        {
+            "id": "63195ceef923d0fb36316e55",
+            "name": "Men's Hoodie",
+            "description": "Product Dimensions ‏ : ‎ 13 x 8 x 1 inches; 1.08 Pounds\r\nItem model number ‏ : ‎ GF89H\r\nDepartment ‏ : ‎ Mens\r\nDate First Available ‏ : ‎ June 15, 2019\r\nManufacturer ‏ : ‎ Champion\r\nASIN ‏ : ‎ B07SZMLDDC\r\nBest Sellers Rank: #1,009 in Clothing, Shoes & Jewelry (See Top 100 in Clothing, Shoes & Jewelry)\r\n#3 in Men's Athletic Hoodies\r\n#8 in Men's Sweatshirts",
+            "price": 55,
+            "offerPrice": "",
+            "ratings": 0,
+            "images": [
+                {
+                    "public_id": "Ecommerce/products/bbulq10scthk3fb3a2ww",
+                    "url": "https://res.cloudinary.com/djas4pyjx/image/upload/v1662606574/Ecommerce/products/bbulq10scthk3fb3a2ww.webp",
+                    "id": "63195ceef923d0fb36316e56"
+                }
+            ],
+            "category": "Sports",
+            "Stock": 4,
+            "numOfReviews": 0,
+            "user": "631599981f95913da34f1a96",
+            "createAt": "2022-09-08T01:56:16.948Z",
+            "reviews": [],
+            "__v": 0
+        }
+    ],
+    "productsCount": 4,
+    "resultPerPage": 8
+}
