@@ -1,10 +1,35 @@
 import { Dimensions, StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native'
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Icon  from 'react-native-vector-icons/Ionicons';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../../redux/Actions/UserAction';
 
 var {width} = Dimensions.get('window');
 
-const Login = ({navigation}) => {
+const SignUp = ({navigation}) => {
+  const dispatch = useDispatch();  
+  
+  const { error, loading, isAuthenticated } = useSelector(
+        (state) => state.user
+      );
+    
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const registerUser = () => {
+        dispatch(register(name, email, password));
+      }
+      useEffect(() => {
+        if (error) {
+          alert(error);
+        
+        
+        }
+    
+        if (isAuthenticated) {
+          alert("User create Done!")
+        }
+      }, [dispatch, error, alert, isAuthenticated]);
   return (
     <View style={styles.container}>
      <View style={styles.LoginHeader}>
@@ -32,11 +57,21 @@ const Login = ({navigation}) => {
         }}>Sign up to continue!</Text>
      </View>
      <View style={styles.formBox}>
-     <Icon name ='mail-outline' size={20} style={styles.icon}/>
+     <Icon name ='person-circle-outline' size={20} style={styles.icon2}/>
+      <TextInput placeholder='Enter Your Name...'
+       placeholderTextColor='#333'
+       style={styles.inputBox}
+        textContentType="name"
+        value={name}
+        onChangeText={setName}
+       />
+     <Icon name ='mail-outline' size={20} style={styles.icon3}/>
       <TextInput placeholder='Enter a valid e-mail address...'
        placeholderTextColor='#333'
        style={styles.inputBox}
         textContentType="emailAddress"
+        value={email}
+        onChangeText={setEmail}
        />
      </View>
      <View>
@@ -46,11 +81,14 @@ const Login = ({navigation}) => {
        style={styles.inputBox}
         textContentType="password"
         secureTextEntry={true}
+        value={password}
+        onChangeText={setPassword}
        />
      
        
        
-       <TouchableOpacity>
+       <TouchableOpacity
+       onPress={registerUser}>
        <View style={styles.button}>
         <Text style={{color:'white', fontWeight:'500'}}>
             Sign Up
@@ -59,7 +97,7 @@ const Login = ({navigation}) => {
        </TouchableOpacity>
       
        <View style ={{flexDirection:'row'}}>
-       <Text>Already have an account?</Text>
+       <Text style={{color:'#333'}}>Already have an account?</Text>
        <TouchableOpacity onPress={() => navigation.navigate('Login')}> 
        <Text style ={{color:'green', paddingLeft:5}}>
         Sign in!
@@ -71,7 +109,7 @@ const Login = ({navigation}) => {
   )
 }
 
-export default Login
+export default SignUp
 
 const styles = StyleSheet.create({
 container:{
@@ -94,7 +132,8 @@ inputBox:{
     padding:10,
     paddingLeft:40,
     fontSize:15,
-    marginVertical:5
+    marginVertical:5,
+    color:'#333'
 
 },
 icon:{
@@ -104,7 +143,20 @@ icon:{
     zIndex:10,
     color:'green'
 },
-
+icon2:{
+    position:'absolute',
+    top:20,
+    left:10,
+    zIndex:10,
+    color:'green'
+},
+icon3:{
+    position:'absolute',
+    top:80,
+    left:10,
+    zIndex:10,
+    color:'green'
+},
 formBox:{
     marginTop:width /4 -50,
 },

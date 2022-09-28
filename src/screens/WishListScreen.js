@@ -4,7 +4,8 @@ import React from 'react'
 const WishListScreen = () => {
   return (
     <View>
-      <Text>WishListScreen</Text>
+    
+      
     </View>
   )
 }

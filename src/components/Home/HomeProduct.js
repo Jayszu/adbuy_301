@@ -3,9 +3,11 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {getProduct} from '../../../redux/Actions/ProductAction'
 import ProductCard from '../Home/ProductCard';
+import FilterProducts from '../Products/FilterProducts';
 
 var { width } = Dimensions.get('window');
-const HomeProduct = () => {
+const HomeProduct = ({navigation}) => {
+
 
     const dispatch = useDispatch();
     const{products, error, loading}=useSelector(state => state.products);
@@ -23,17 +25,8 @@ const HomeProduct = () => {
     {loading ? <Text>loading</Text>: (
       
         <ScrollView style ={styles.container}>
-      <Text style ={{
-        fontSize:20,
-        color:'#333',
-        textAlign:'center'
-
-      }}>Best Seller</Text>
-      <View style = {styles.ProductCard}>
-      {products && products.map(product=>(
-        <ProductCard key = {product._id}product={product}/>
-    ))}
-      </View>
+      <FilterProducts products={products} navigation={navigation}/>
+   
     </ScrollView>
    
     )}

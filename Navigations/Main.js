@@ -5,7 +5,7 @@ import HomeScreen from '../src/screens/HomeScreen';
 import AuthScreen from "../src/screens/AuthScreen"
 import Tabs from './Tabs';
 
-const Main = () => {
+const Main = ({navigation}) => {
   const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator initialRouteName="Home" screenOptions ={{

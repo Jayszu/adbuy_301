@@ -1,5 +1,5 @@
 {
-  "name": "mernAdbuy",
+  "name": "AdBuy",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -21,6 +21,7 @@
     "express-jwt": "^7.7.5",
     "firebase": "^9.9.4",
     "install": "^0.13.0",
+    "lottie-react-native": "^5.1.4",
     "react": "18.1.0",
     "react-native": "0.70.0",
     "react-native-gesture-handler": "^2.6.0",
@@ -44,5 +45,9 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "main": "backend/server.js",
+  "author": "Jay",
+  "license": "ISC",
+  "description": ""
 }

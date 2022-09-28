@@ -5,15 +5,18 @@ import WishListScreen from '../src/screens/WishListScreen';
 import CartScreen from '../src/screens/CartScreen';
 import ProfileScreen from '../src/screens/ProfileScreen';
 import React from "react"
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { View, Image, Text } from 'react-native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ProductDetails from '../src/components/Products/ProductDetails';
 const Tab = createBottomTabNavigator();
 
 export default function Tabs() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false, tabBarHideOnKeyboard: true, }} >
-      <Tab.Screen name="HomePage" component={HomeScreen} options={{
-        tabBarIcon: ({ focused }) =>
-        (
+      <Tab.Screen name="HomePage" component={ProdScreen}  options={({route}) => ({
+                tabBarStyle: {display: Visibility(route)},
+                tabBarIcon: ({focused}) => (
           <View style={{
             flexDirection: 'column',
             alignItems: 'center',
@@ -28,35 +31,14 @@ export default function Tabs() {
                 marginTop: 10,
                 tintColor: focused ? 'crimson' : 'black'
               }}
-            />
+            />  
             <Text style={{ color: focused ? 'crimson' : 'black' }}>Home</Text>
           </View>
         )
-      }} />
-      <Tab.Screen name="Products" component={ProductsScreen} options={{
-        tabBarIcon: ({ focused }) =>
-        (
-          <View style={{
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-
-          }}>
-            <Image source={require('../src/assets/store.png')}
-              style={{
-                width: 25,
-                height: 25,
-                resizeMode: 'contain',
-                marginTop: 10,
-                tintColor: focused ? 'crimson' : 'black'
-              }}
-            />
-            <Text style={{ color: focused ? 'crimson' : 'black' }}>Products</Text>
-          </View>
-        )
-      }} />
+      })} />
+      
       <Tab.Screen name="WishList" component={WishListScreen} options={{
-        tabBarBadge: 2, tabBarIcon: ({ focused }) =>
+        tabBarBadge: 0, tabBarIcon: ({ focused }) =>
         (
           <View style={{
             flexDirection: 'column',
@@ -78,7 +60,7 @@ export default function Tabs() {
         )
       }} />
       <Tab.Screen name="Cart" component={CartScreen} options={{
-        tabBarBadge: 2, tabBarIcon: ({ focused }) =>
+        tabBarBadge: 0, tabBarIcon: ({ focused }) =>
         (
           <View style={{
             flexDirection: 'column',
@@ -123,4 +105,28 @@ export default function Tabs() {
       }} />
     </Tab.Navigator>
   );
+}
+
+const ProdScreen = () =>{
+  const Stack = createNativeStackNavigator();
+  return(
+<Stack.Navigator screenOptions={{headerShown:false}}
+initialRouteName="Home"
+>
+<Stack.Screen name="Home" component={HomeScreen}/>
+<Stack.Screen name="ProductDetails" component={ProductDetails}/>
+</Stack.Navigator>
+  )
+}
+
+const Visibility = (route) => {
+
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
+
+  if(routeName === "ProductDetails"){
+   return "none"
+  }
+  if(routeName === "Home"){
+   return "flex"
+  }
 }

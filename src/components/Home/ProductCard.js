@@ -1,19 +1,22 @@
-import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity,ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity,ScrollView,TouchableWithoutFeedback } from 'react-native'
 import React,{useState} from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 
 
 
+
+var height = Dimensions.get('window').height;
 var { width } = Dimensions.get('window');
 
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, navigation }) => {
   const[ click ,setClick] = useState(false);
 
   return (
- 
-    <View style={styles.productCard}>
+ <TouchableWithoutFeedback onPress={()=> navigation.navigate("ProductDetails",
+  {item:product})}>
+  <View style={styles.productCard}>
       <Image source={{ uri: product.images[0].url }}
         style={styles.image}
       />
@@ -26,10 +29,31 @@ const ProductCard = ({ product }) => {
         }}>{product.name}</Text>
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-        <Text style={{ color: 'green', paddingHorizontal:10, fontSize:15 }}>PHP{product.price}</Text>
-       
-
+      <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent:"space-between",
+            width: "100%",
+            paddingBottom:10
+          }}>
+        <Text style={{ color: 'green', paddingHorizontal:10, fontSize:15 }}>₱{product.price}</Text>
+        <View 
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',              
+            }}
+           >
+           <Icon name='star' color="#C68600" size={18} />
+           <Text style={{
+             color:"#333",
+             paddingHorizontal:5,
+             fontSize:16
+           }}>({product.numOfReviews})</Text>
+           </View>
       </View>
+      </View>
+      
       <View style={{
             flexDirection:"row",
             justifyContent:'flex-end'
@@ -45,7 +69,7 @@ const ProductCard = ({ product }) => {
             )
             :(
               <TouchableOpacity>
-          <Icon name ="heart-dislike" size={28} style={{marginRight:5}}
+          <Icon name ="heart-dislike" size={28} style={{marginRight:5, color:'#333'}}
             onPress={()=>setClick(!click)}
           />
           </TouchableOpacity>
@@ -54,7 +78,7 @@ const ProductCard = ({ product }) => {
           {
             product.Stock !== 0 ? (
               <TouchableOpacity>
-          <Icon name ="cart-outline" size={28}/>
+          <Icon name ="cart-outline" size={28}s style={{color:'#333'}}/>
           </TouchableOpacity>
             )
             :(
@@ -64,7 +88,7 @@ const ProductCard = ({ product }) => {
         
           </View>
          {
-          product.countInStock === 0 ? (
+          product.Stock === 0 ? (
             <View style={styles.outofstock}>
           <Text style ={{color:'red', fontSize:14}}>No Stock</Text>
 
@@ -76,7 +100,7 @@ const ProductCard = ({ product }) => {
          }
           
     </View>
- 
+ </TouchableWithoutFeedback>
    
   )
 }
@@ -86,7 +110,7 @@ export default ProductCard
 const styles = StyleSheet.create({
   productCard: {
     width: width / 2 - 30,
-    height: width/1.8,
+    height: width/1.7,
     borderRadius: 10,
     elevation: 8,
     backgroundColor: "#e5e5e5",

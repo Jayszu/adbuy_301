@@ -2,10 +2,10 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Header from '../components/Layout/Header'
 
-const ProductsScreen = () => {
+const ProductsScreen = ({navigation}) => {
   return (
     <View>
-    <Header />
+    <Header navigation={navigation} />
       <Text>ProductsScreen</Text>
     </View>
   )

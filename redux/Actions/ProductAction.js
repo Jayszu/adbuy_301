@@ -5,7 +5,7 @@ export const getProduct = () => async (dispatch) => {
       dispatch({
         type: "allProductRequest",
       });
-      const {data} = await axios.get('https://mern-nest-ecommerce.herokuapp.com/api/v2/products');
+      const {data} = await axios.get('https://adbuy.herokuapp.com/api/v2/products');
       dispatch({
         type: "allProductSuccess",
         payload: data,
@@ -17,3 +17,4 @@ export const getProduct = () => async (dispatch) => {
       });
     }
   };
+  
