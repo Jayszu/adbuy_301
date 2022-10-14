@@ -10,7 +10,7 @@ export const userLogin = (email, password) => async dispatch => {
     const config = {headers: {'Content-Type': 'application/json'}};
 
     const {data} = await axios.post(
-      `https://adbuy.herokuapp.com/api/v2/login`,
+      `https://ite301api.000webhostapp.com/phprestapi/api/users/login.php`,
       {email, password},
       config,
     );
@@ -44,7 +44,7 @@ export const register = (name, email, password) => async dispatch => {
     dispatch({type: 'userCreateRequest'});
 
     const {data} = await axios.post(
-      `https://adbuy.herokuapp.com/api/v2/register`,
+      `https://ite301api.000webhostapp.com/phprestapi/api/users/create_user.php`,
       {name, email, password},
       {
         headers: {
@@ -64,7 +64,7 @@ export const register = (name, email, password) => async dispatch => {
 //logout
  export const LogOutUser = () =>async (dispatch) =>{
   try {
-    await axios.get(`https://adbuy.herokuapp.com/api/v2/logout`);
+    await axios.get(`https://ite301api.000webhostapp.com/phprestapi/api/users/logout.php`);
     dispatch({type: 'userLogOutSucess'});
   } catch (error) {
     dispatch({type: 'userLogOutFail', payload: error.response.data.message});

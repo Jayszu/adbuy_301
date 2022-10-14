@@ -80,10 +80,10 @@ const FilterProducts = ({navigation}) => {
         ) : (
           <>
             {data &&
-              data.map(product => (
+              data.map(products => (
                 <ProductCard
-                  key={product._id}
-                  product={product}
+                  key={products.id}
+                  products={products}
                   navigation={navigation}
                   //wishlistData={wishlistData}
                 />

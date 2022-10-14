@@ -1,13 +1,15 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, ScrollView,RefreshControl } from 'react-native'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {getProduct} from '../../../redux/Actions/ProductAction'
 import ProductCard from '../Home/ProductCard';
 import FilterProducts from '../Products/FilterProducts';
 
+
+
 var { width } = Dimensions.get('window');
 const HomeProduct = ({navigation}) => {
-
+    
 
     const dispatch = useDispatch();
     const{products, error, loading}=useSelector(state => state.products);
@@ -17,6 +19,7 @@ const HomeProduct = ({navigation}) => {
             alert(error)
         }
         dispatch(getProduct());
+        
     },[dispatch,error])
     
   return (
@@ -24,10 +27,11 @@ const HomeProduct = ({navigation}) => {
    <>
     {loading ? <Text>loading</Text>: (
       
-        <ScrollView style ={styles.container}>
+        
       <FilterProducts products={products} navigation={navigation}/>
+      
    
-    </ScrollView>
+    
    
     )}
    </>

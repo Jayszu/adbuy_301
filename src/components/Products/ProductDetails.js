@@ -2,13 +2,16 @@ import { Dimensions, StyleSheet, Text, View,TouchableOpacity, Image,ToastAndroid
 import React,{useEffect, useState} from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Swiper from 'react-native-swiper'
+import { useSelector } from 'react-redux';
 
 var height = Dimensions.get('window').height;
 var {width} = Dimensions.get('window')
 
-const ProductDetails = ({route, navigation}) => {
+const ProductDetails = ({ route,navigation}) => {
+  const {products} = useSelector(state => state.products);
+  
   const [click, setClick] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
@@ -17,9 +20,9 @@ const ProductDetails = ({route, navigation}) => {
 
   // increaseQuantity handler
   const increaseQuantity = () => {
-    if (route.params?.item.Stock - 1 < quantity) {
+    if (route.params?.products.stock -1 < quantity) {
       ToastAndroid.showWithGravity(
-        `This item is Out of Stock`,
+        `Item dont have any stocks left`,
         ToastAndroid.SHORT,
         ToastAndroid.BOTTOM,
       );
@@ -37,42 +40,15 @@ const ProductDetails = ({route, navigation}) => {
        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="arrow-back" color="#333" size={30} />
         </TouchableOpacity>
-        {click ? (
-            <Icon
-              name="heart"
-              size={30}
-              style={{
-                marginRight: 10,
-                color: 'crimson',
-                position:"absolute",
-                bottom:0,
-                right:0,
-              }}
-              onPress={() => setClick(!click) }
-            />
-        ) : (
-            <Icon
-              name="heart-outline"
-              size={30}
-              style={{
-                marginRight: 10,
-                color: '#333',
-                position:"absolute",
-                bottom:0,
-                right:0,
-              }}
-              onPress={() => setClick(!click)}
-            />
-        )}
+       
       </View>
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <View style={styles.swiper}>
-        <Swiper showButtons={true} autoplay={true} autoplayTimeout={4}>
-          {route.params?.item.images.map(i => (
-            <Image source={{uri: i.url}} style={styles.banner} key={i._id} />
-          ))}
-        </Swiper>
-      </View>
+    <View style={styles.swiper}>
+    
+          
+            <Image source={{uri: route.params?.products.images}} style={styles.image} key={products.id} />
+          
+        </View>
       <View style={styles.details_box}>
         <View style={styles.details}>
           <View>
@@ -82,7 +58,7 @@ const ProductDetails = ({route, navigation}) => {
                 fontSize: 20,
                 fontWeight: '600',
               }}>
-              {route.params?.item.name}
+              {route.params?.products.name}
             </Text>
           </View>
           <View
@@ -97,7 +73,7 @@ const ProductDetails = ({route, navigation}) => {
                 fontSize: 18,
                 fontWeight: '600',
               }}>
-              ₱{route.params?.item.price}
+              ₱{route.params?.products.price}
             </Text>
           </View>
         </View>
@@ -118,7 +94,7 @@ const ProductDetails = ({route, navigation}) => {
               lineHeight: 20,
               paddingTop: 10,
             }}>
-            {route.params?.item.description}
+            {route.params?.products.description}
           </Text>
         </View>
         <View style={styles.quantity}>
@@ -189,7 +165,7 @@ const ProductDetails = ({route, navigation}) => {
               }}>
               Reviews
             </Text>
-            {route.params?.item.reviews.length === 0 ? (
+            {route.params?.products.reviews == 0 ? (
               <Text
                 style={{
                   textAlign: 'center',
@@ -200,9 +176,9 @@ const ProductDetails = ({route, navigation}) => {
               </Text>
             ) : (
               <View>
-                {route.params?.item.reviews.map(i => (
+                
                   <View
-                    key={i._id}
+                
                     style={{
                       flexDirection: 'row',
                       alignItems: "flex-start",
@@ -215,7 +191,7 @@ const ProductDetails = ({route, navigation}) => {
                         fontWeight: '700',
                         paddingLeft:5
                       }}>
-                      {i.name}
+                      {route.params?.products.reviews}
                       <Text
                        style={{
                         fontSize: 15,
@@ -224,13 +200,13 @@ const ProductDetails = ({route, navigation}) => {
                         paddingLeft:5
                       }}
                       >
-                      {"  "}{i.comment} 
+                      {"  "}
                       </Text>
                     </Text>
                     <Icon name="star" color="#C68600" size={18} />
-                    <Text style={{color:"#333"}}>({i.rating})</Text>
+                    <Text style={{color:"#333"}}>({route.params?.products.ratings})</Text>
                   </View>
-                ))}
+                
               </View>
             )}
             <View
@@ -402,4 +378,10 @@ const styles = StyleSheet.create({
     width: width * 1,
     padding: 20,
   },
+  image: {
+    width: width,
+    height: width / 2 +10 ,
+    resizeMode: "contain",
+
+  }
 });

@@ -76,7 +76,7 @@ const Header = ({navigation}) => {
             }}>
             {data && data.map((i, index) => (
               <TouchableOpacity
-                onPress={()=> navigation.navigate('ProductDetails', {item:i})}
+                onPress={()=> navigation.navigate('ProductDetails', {products:i})}
                 key={index}>
                 <View
                   style={{
@@ -86,7 +86,7 @@ const Header = ({navigation}) => {
                     alignItems: 'center',
                   }}>
                   <Image
-                    source={{uri: i.images[0].url}}
+                    source={{uri: i.images}}
                     style={{height: 40, width: 40}}
                   />
                   <Text

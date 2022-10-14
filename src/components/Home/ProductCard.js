@@ -1,6 +1,9 @@
-import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity,ScrollView,TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity,ScrollView,TouchableWithoutFeedback,ToastAndroid } from 'react-native'
 import React,{useState} from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { useSelector,useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { addWishList,removeWishList } from '../../../redux/Actions/ProductAction';
 
 
 
@@ -10,14 +13,59 @@ var height = Dimensions.get('window').height;
 var { width } = Dimensions.get('window');
 
 
-const ProductCard = ({ product, navigation }) => {
-  const[ click ,setClick] = useState(false);
+const ProductCard = ({ products, navigation,wishlistData }) => {
+  const {user} = useSelector(state => state.user);
+  const [click, setClick] = useState(false);
+  const [data, setData] = useState('');
+  const [touch, setTouch] = useState(false);
+  const dispatch = useDispatch();
 
+  const wishListHandler = async () => {
+    setClick(true);
+    dispatch(
+      addWishList(
+        products.name,
+        1,
+        products.images[0].url,
+        products.price,
+        user._id,
+        products.id,
+        products.stock,
+      ),
+    );
+    ToastAndroid.showWithGravity(
+      `${products.name} added to Wishlist`,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
+  const removeWishListData = data => {
+    setClick(false);
+    setTouch(true);
+    let id = data;
+    dispatch(removeWishList(id));
+    ToastAndroid.showWithGravity(
+      `${products.name} removed from Wishlist`,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
+
+  useEffect(() => {
+    if (wishlistData && wishlistData.length > 0) {
+      wishlistData.map(data => {
+        setData(data);
+        if (data.productId === products.id && touch === false) {
+          setClick(true);
+        }
+      });
+    }
+  }, [wishlistData]);
   return (
  <TouchableWithoutFeedback onPress={()=> navigation.navigate("ProductDetails",
-  {item:product})}>
+ {products:products})}>
   <View style={styles.productCard}>
-      <Image source={{ uri: product.images[0].url }}
+      <Image source={{ uri: products.images }}
         style={styles.image}
       />
       <View>
@@ -26,7 +74,7 @@ const ProductCard = ({ product, navigation }) => {
           paddingVertical: 5,
           textAlign: 'center'
 
-        }}>{product.name}</Text>
+        }}>{products.name}</Text>
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
       <View
@@ -37,7 +85,7 @@ const ProductCard = ({ product, navigation }) => {
             width: "100%",
             paddingBottom:10
           }}>
-        <Text style={{ color: 'green', paddingHorizontal:10, fontSize:15 }}>₱{product.price}</Text>
+        <Text style={{ color: 'green', paddingHorizontal:10, fontSize:15 }}>₱{products.price}</Text>
         <View 
             style={{
               flexDirection: 'row',
@@ -49,7 +97,7 @@ const ProductCard = ({ product, navigation }) => {
              color:"#333",
              paddingHorizontal:5,
              fontSize:16
-           }}>({product.numOfReviews})</Text>
+           }}>({products.numOfReviews})</Text>
            </View>
       </View>
       </View>
@@ -62,7 +110,7 @@ const ProductCard = ({ product, navigation }) => {
             click ? (
               <TouchableOpacity>
           <Icon name ="heart" size={28}  style={{marginRight:5, color:'crimson',}}
-            onPress={()=>setClick(!click)}
+             onPress={() => removeWishListData(data.id)}
           />
           </TouchableOpacity>
             
@@ -70,25 +118,16 @@ const ProductCard = ({ product, navigation }) => {
             :(
               <TouchableOpacity>
           <Icon name ="heart-dislike" size={28} style={{marginRight:5, color:'#333'}}
-            onPress={()=>setClick(!click)}
+            onPress={wishListHandler}
           />
           </TouchableOpacity>
             )
           }
-          {
-            product.Stock !== 0 ? (
-              <TouchableOpacity>
-          <Icon name ="cart-outline" size={28}s style={{color:'#333'}}/>
-          </TouchableOpacity>
-            )
-            :(
-              null
-            )
-          }
+         
         
           </View>
          {
-          product.Stock === 0 ? (
+         products && products.stock == 0 ? (
             <View style={styles.outofstock}>
           <Text style ={{color:'red', fontSize:14}}>No Stock</Text>
 

@@ -9,6 +9,7 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { View, Image, Text } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductDetails from '../src/components/Products/ProductDetails';
+import CreateProd from '../src/screens/CreateProd';
 const Tab = createBottomTabNavigator();
 
 export default function Tabs() {
@@ -59,31 +60,10 @@ export default function Tabs() {
           </View>
         )
       }} />
-      <Tab.Screen name="Cart" component={CartScreen} options={{
-        tabBarBadge: 0, tabBarIcon: ({ focused }) =>
-        (
-          <View style={{
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-
-          }}>
-            <Image source={require('../src/assets/cart.png')}
-              style={{
-                width: 25,
-                height: 25,
-                resizeMode: 'contain',
-                marginTop: 10,
-                tintColor: focused ? 'crimson' : 'black'
-              }}
-            />
-            <Text style={{ color: focused ? 'crimson' : 'black' }}>Cart</Text>
-          </View>
-        )
-      }} />
-      <Tab.Screen name="Profile" component={ProfileScreen} options={{
-        tabBarIcon: ({ focused }) =>
-        (
+     
+      <Tab.Screen name="Profiles" component={ProfileScreens} options={({route}) => ({
+                tabBarStyle: {display: Visibility1(route)},
+                tabBarIcon: ({focused}) => (
           <View style={{
             flexDirection: 'column',
             alignItems: 'center',
@@ -102,7 +82,7 @@ export default function Tabs() {
             <Text style={{ color: focused ? 'crimson' : 'black' }}>Profile</Text>
           </View>
         )
-      }} />
+      })} /> 
     </Tab.Navigator>
   );
 }
@@ -115,6 +95,8 @@ initialRouteName="Home"
 >
 <Stack.Screen name="Home" component={HomeScreen}/>
 <Stack.Screen name="ProductDetails" component={ProductDetails}/>
+<Stack.Screen name="CreateProd" component={CreateProd}/>
+
 </Stack.Navigator>
   )
 }
@@ -130,3 +112,29 @@ const Visibility = (route) => {
    return "flex"
   }
 }
+
+const ProfileScreens = () =>{
+  const Stack = createNativeStackNavigator();
+  return(
+<Stack.Navigator screenOptions={{headerShown:false}}
+initialRouteName="Profile"
+>
+<Stack.Screen name="Profile" component={ProfileScreen}/>
+<Stack.Screen name="CreateProd" component={CreateProd}/>
+
+</Stack.Navigator>
+  )
+}
+
+const Visibility1 = (route) => {
+
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
+
+  if(routeName === "CreateProd"){
+   return "none"
+  }
+  if(routeName === "Profile"){
+   return "flex"
+  }
+}
+

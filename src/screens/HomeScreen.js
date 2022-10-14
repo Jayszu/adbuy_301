@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions,ScrollView, Image} from 'react-native'
+import { StyleSheet, Text, View, Dimensions,ScrollView,RefreshControl, Image} from 'react-native'
 import React, { useEffect ,useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import FilterProducts from '../components/Products/FilterProducts'
@@ -6,7 +6,7 @@ import Banner from '../components/Home/Banner';
 import HomeProduct from '../components/Home/HomeProduct'
 import { getProduct } from '../../redux/Actions/ProductAction';
 import Header from '../components/Layout/Header';
-
+import axios from 'axios';
 
 var { width } = Dimensions.get('window');
 const HomeScreen = ({navigation}) => {
@@ -19,6 +19,8 @@ const HomeScreen = ({navigation}) => {
     }
     dispatch(getProduct());
   }, [dispatch, error]);
+
+
   return (
     <View style={styles.container}>
     
