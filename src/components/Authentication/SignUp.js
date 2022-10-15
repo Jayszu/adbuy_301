@@ -16,8 +16,14 @@ const SignUp = ({navigation}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("");
+    
     const registerUser = () => {
-        dispatch(register(name, email, password));
+      if(password.length >=8 && password === password2){
+        dispatch(register(name, email, password));}
+        else{
+          alert("Error creating user/ Please check your password if it's 8 character or if password matches")
+        }
       }
       useEffect(() => {
         if (error) {
@@ -81,9 +87,24 @@ const SignUp = ({navigation}) => {
        style={styles.inputBox}
         textContentType="password"
         secureTextEntry={true}
-        value={password}
+        alue={password}
         onChangeText={setPassword}
+
        />
+        <Icon name ='lock-open-outline' size={20} style={styles.icon3}/>
+         <TextInput placeholder='Confirm Password...'
+       placeholderTextColor='#333'
+       style={styles.inputBox}
+        textContentType="password"
+        secureTextEntry={true}
+        alue={password}
+        onChangeText={setPassword2}
+
+       />
+        
+        
+        
+     
      
        
        

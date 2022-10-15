@@ -10,7 +10,7 @@ export const userLogin = (email, password) => async dispatch => {
     const config = {headers: {'Content-Type': 'application/json'}};
 
     const {data} = await axios.post(
-      `https://ite301api.000webhostapp.com/phprestapi/api/users/login.php`,
+      `https://adbuy.herokuapp.com/api/v2/login`,
       {email, password},
       config,
     );
@@ -44,7 +44,7 @@ export const register = (name, email, password) => async dispatch => {
     dispatch({type: 'userCreateRequest'});
 
     const {data} = await axios.post(
-      `https://ite301api.000webhostapp.com/phprestapi/api/users/create_user.php`,
+      `https://adbuy.herokuapp.com/api/v2/register`,
       {name, email, password},
       {
         headers: {
