@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { useSelector,useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { addWishList,removeWishList } from '../../../redux/Actions/ProductAction';
+import axios from 'axios';
+
 
 
 
@@ -25,10 +27,8 @@ const ProductCard = ({ products, navigation,wishlistData }) => {
     dispatch(
       addWishList(
         products.name,
-        1,
-        products.images[0].url,
+        products.images,
         products.price,
-        user._id,
         products.id,
         products.stock,
       ),
@@ -37,17 +37,18 @@ const ProductCard = ({ products, navigation,wishlistData }) => {
       `${products.name} added to Wishlist`,
       ToastAndroid.SHORT,
       ToastAndroid.BOTTOM,
+      
     );
   };
-  const removeWishListData = data => {
+  const removeWishListData = (data) => {
     setClick(false);
     setTouch(true);
-    let id = data;
-    dispatch(removeWishList(id));
+    axios.post('https://adbuystore.000webhostapp.com/phprestapi/api/wishlist/removeWishlist.php', { id:products.id,})
     ToastAndroid.showWithGravity(
       `${products.name} removed from Wishlist`,
       ToastAndroid.SHORT,
       ToastAndroid.BOTTOM,
+      
     );
   };
 
@@ -55,7 +56,7 @@ const ProductCard = ({ products, navigation,wishlistData }) => {
     if (wishlistData && wishlistData.length > 0) {
       wishlistData.map(data => {
         setData(data);
-        if (data.productId === products.id && touch === false) {
+        if (data.id === products.id && touch === false) {
           setClick(true);
         }
       });
@@ -63,8 +64,9 @@ const ProductCard = ({ products, navigation,wishlistData }) => {
   }, [wishlistData]);
   return (
  <TouchableWithoutFeedback onPress={()=> navigation.navigate("ProductDetails",
- {products:products})}>
+ {products:products,wishlistData})}>
   <View style={styles.productCard}>
+  
       <Image source={{ uri: products.images }}
         style={styles.image}
       />
@@ -110,7 +112,7 @@ const ProductCard = ({ products, navigation,wishlistData }) => {
             click ? (
               <TouchableOpacity>
           <Icon name ="heart" size={28}  style={{marginRight:5, color:'crimson',}}
-             onPress={() => removeWishListData(data.id)}
+             onPress={() => removeWishListData()}
           />
           </TouchableOpacity>
             

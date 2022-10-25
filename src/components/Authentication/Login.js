@@ -80,15 +80,7 @@ return (
           value={password}
           onChangeText={setPassword} 
           />
-        <Text
-          style={{
-            color: '#333',
-            fontSize: 14,
-          }}
-          onPress={() => navigation.navigate("Forgot")}
-          >
-          Forgot Password ?
-        </Text>
+        
         <TouchableOpacity
         onPress={loginSubmit}
         >
@@ -112,7 +104,7 @@ return (
         }}>
         Create an Account ?
       </Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Verify')}>
         <Text
           style={{
             fontSize: 15,

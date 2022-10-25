@@ -64,7 +64,7 @@ export const register = (name, email, password) => async dispatch => {
 //logout
  export const LogOutUser = () =>async (dispatch) =>{
   try {
-    await axios.get(`https://ite301api.000webhostapp.com/phprestapi/api/users/logout.php`);
+    await axios.get(`https://adbuy.herokuapp.com/api/v2/logout`);
     dispatch({type: 'userLogOutSucess'});
   } catch (error) {
     dispatch({type: 'userLogOutFail', payload: error.response.data.message});

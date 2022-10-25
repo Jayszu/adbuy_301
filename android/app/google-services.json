@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "436194060184",
+    "project_id": "sms-otp-b9f5f",
+    "storage_bucket": "sms-otp-b9f5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436194060184:android:5659a2d9a40c165946aded",
+        "android_client_info": {
+          "package_name": "com.jay.adbuy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436194060184-2i34ll0h15dkb0b28pup2rgk4pnriu85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmefvpke071SXD_Zujlp7YxdKAcbZAAN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436194060184-2i34ll0h15dkb0b28pup2rgk4pnriu85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

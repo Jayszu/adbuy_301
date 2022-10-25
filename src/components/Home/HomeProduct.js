@@ -13,6 +13,7 @@ const HomeProduct = ({navigation}) => {
 
     const dispatch = useDispatch();
     const{products, error, loading}=useSelector(state => state.products);
+    const{wishlistData}=useSelector(state => state.wishlistData);
 
     useEffect(()=>{
         if (error){
@@ -28,7 +29,7 @@ const HomeProduct = ({navigation}) => {
     {loading ? <Text>loading</Text>: (
       
         
-      <FilterProducts products={products} navigation={navigation}/>
+      <FilterProducts products={products} navigation={navigation} wishlistData={wishlistData}/>
       
    
     

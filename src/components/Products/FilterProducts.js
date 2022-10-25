@@ -2,6 +2,8 @@ import {StyleSheet, Text, View,ScrollView, TouchableOpacity, Dimensions} from 'r
 import React from 'react';
 import { useSelector,useDispatch} from 'react-redux';
 import { useState } from 'react';
+import { getWishList } from '../../../redux/Actions/ProductAction';
+
 
 import ProductCard from '../Home/ProductCard';
 
@@ -43,7 +45,7 @@ const categories = [
 
 const FilterProducts = ({navigation}) => {
     const {products} = useSelector(state => state.products);
-    //const {wishlistData} = useSelector(state => state.wishList);
+    const {wishlistData} = useSelector(state => state.wishlistData);
     const [active, setActive] = useState('All');
     const [data, setData] = useState(products);
 
@@ -85,7 +87,7 @@ const FilterProducts = ({navigation}) => {
                   key={products.id}
                   products={products}
                   navigation={navigation}
-                  //wishlistData={wishlistData}
+                  wishlistData={wishlistData}
                 />
               ))}
           </>

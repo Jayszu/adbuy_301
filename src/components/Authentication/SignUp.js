@@ -3,6 +3,7 @@ import React,{useState,useEffect} from 'react'
 import Icon  from 'react-native-vector-icons/Ionicons';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../../redux/Actions/UserAction';
+import Otp from './Otp';
 
 var {width} = Dimensions.get('window');
 
@@ -17,10 +18,13 @@ const SignUp = ({navigation}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
+  
+  
     
     const registerUser = () => {
-      if(password.length >=8 && password === password2){
-        dispatch(register(name, email, password));}
+      if(password.length >=8 && password === password2 ){ 
+        dispatch(register(name, email, password));
+      }
         else{
           alert("Error creating user/ Please check your password if it's 8 character or if password matches")
         }
@@ -36,6 +40,8 @@ const SignUp = ({navigation}) => {
           alert("User create Done!")
         }
       }, [dispatch, error, alert, isAuthenticated]);
+
+      
   return (
     <View style={styles.container}>
      <View style={styles.LoginHeader}>
@@ -87,7 +93,7 @@ const SignUp = ({navigation}) => {
        style={styles.inputBox}
         textContentType="password"
         secureTextEntry={true}
-        alue={password}
+        value={password}
         onChangeText={setPassword}
 
        />
@@ -97,16 +103,12 @@ const SignUp = ({navigation}) => {
        style={styles.inputBox}
         textContentType="password"
         secureTextEntry={true}
-        alue={password}
+        value={password2}
         onChangeText={setPassword2}
 
        />
         
         
-        
-     
-     
-       
        
        <TouchableOpacity
        onPress={registerUser}>
@@ -124,6 +126,7 @@ const SignUp = ({navigation}) => {
         Sign in!
        </Text></TouchableOpacity>
        </View>
+      
        
      </View>
     </View>

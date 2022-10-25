@@ -4,10 +4,13 @@ import { Icon } from '@material-ui/core'
 import { LogOutUser } from '../../redux/Actions/UserAction'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { signout } from '../components/Authentication/Otp'
+
 var { width } = Dimensions.get('window');
 var height = Dimensions.get('window').height;
 
 const ProfileScreen = ({navigation}) => {
+  
   const dispatch = useDispatch();
   const{user} = useSelector((state)=>state.user)
   const LogOut =()=>{
@@ -15,11 +18,10 @@ dispatch(LogOutUser())
   }
   return (
  
-    <ScrollView style={styles.container} >
-
+    <View>
     <View style={styles.profileHead}>
     <ImageBackground source={{uri:'https://img.freepik.com/free-vector/white-gold-geometric-pattern-background-vector_53876-140726.jpg?w=2000'}} resizeMode="cover" style={styles.profileHead}>
-    <Text style={{color:"#c23d5d", fontSize:25, fontWeight:"bold", marginTop:50, marginLeft:20}}>Hello, Have a good day!</Text>
+    <Text style={{color:"#c23d5d", fontSize:25, fontWeight:"bold", marginTop:50, marginLeft:20}}>Hello, Have a good day! <Text style={{color:"blue"}}>{user.name}</Text></Text>
     </ImageBackground>
     </View>
     <View style={styles.crudContainer}>
@@ -29,29 +31,34 @@ dispatch(LogOutUser())
     <Text style={{color:'black', fontSize:17, marginLeft:5,fontWeight:"bold"}}>Services</Text>
     <Image style={styles.prodImage} source={{uri:"https://i.ibb.co/yN9Z21y/Png-Item-3256246.png"}}>
     </Image>
-    <Text style={{color:'black', fontSize:17,marginLeft:15}}>Sell</Text>
+    <Text style={{color:'black', fontSize:17,marginLeft:15}}>Product Ad</Text>
+
     </View>
     
     </TouchableWithoutFeedback>
-   
-    <TouchableWithoutFeedback onPress={()=> navigation.navigate("CreateProd")}>
+    <TouchableWithoutFeedback onPress={()=> navigation.navigate("MyAds")}>
     <View style={styles.Orders}>
-    <Image style={styles.prodImage} source={{uri:"https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png"}}>
+    <Image style={styles.prodImage} source={{uri:"https://i.ibb.co/yN9Z21y/Png-Item-3256246.png"}}>
     </Image>
-    <Text style={{color:'black', fontSize:17,marginLeft:15}}>Cart</Text>
+    <Text style={{color:'black', fontSize:17,marginLeft:22}}>My Ads</Text>
     </View>
     </TouchableWithoutFeedback>
+   
+   
 
    </View>
    
    
     
           <View style={styles.Button}>
-            <Text style={{color: 'black', fontSize: 18}} onPress={LogOut}>Logout</Text>
+            <Text style={{color: 'black', fontSize: 18}} onPress={() => {
+     LogOut();
+     signout();
+    }}>Logout</Text>
           </View>
       
-     
-  </ScrollView>
+     </View>
+ 
   )
 }
 
@@ -70,7 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3BB77E',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 700,
+    marginTop: 380,
 
   },
   Logout:{
@@ -83,7 +90,8 @@ const styles = StyleSheet.create({
   prodImage:{
     height:50,
     width:60,
-    resizeMode:'contain'
+    resizeMode:'contain',
+    marginLeft:20
 
   },
   crudContainer:{

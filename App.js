@@ -10,6 +10,9 @@ import Auth from "./Navigations/Auth"
 import { loadUser } from './redux/Actions/UserAction'
 import Splash from './src/components/Layout/Splash'
 import Loader from './src/components/Layout/Loader'
+import Otp from './src/components/Authentication/Otp'
+import VerifyScreen from './src/screens/VerifyScreen'
+
 
 
 const App = () => {
@@ -38,7 +41,7 @@ const AppStack = () =>{
           <Main /> 
         )
         :(
-          <Auth />
+         <Auth />
         )
       } 
       </>     

@@ -143,7 +143,7 @@ const ProductDetails = ({ route,navigation}) => {
             alignItems: 'center',
           }}>
           <TouchableOpacity style={styles.button} onPress={() => {
-    alert('Item added to cart(temporary alert) ');
+    alert('Item added to Wishlist(temporary alert) ');
   }}>
           <View >
             <Text
@@ -152,7 +152,7 @@ const ProductDetails = ({ route,navigation}) => {
                 color: '#fff',
                 fontWeight: '600',
               }}>
-              Add to Cart
+              Add to Wishlist
             </Text>
           </View>
      </TouchableOpacity>

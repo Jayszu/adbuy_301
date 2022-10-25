@@ -12,6 +12,7 @@ var { width } = Dimensions.get('window');
 const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const {products,error} = useSelector(state => state.products);
+  const{wishlistData}= useSelector(state =>state.wishlistData);
 
   useEffect(() => {
     if (error) {
@@ -30,7 +31,7 @@ const HomeScreen = ({navigation}) => {
     <Header navigation={navigation}/>
         <Banner />
 
-       <HomeProduct products={products} navigation={navigation} />
+       <HomeProduct products={products} navigation={navigation} wishlistData={wishlistData} />
     </ScrollView>
     </View>
   )
