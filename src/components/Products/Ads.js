@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet, Text, View,TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button } from '@material-ui/core';
+import axios from 'axios';
 
 
 var height = Dimensions.get('window').height;
@@ -11,24 +11,32 @@ const Ads = ({navigation,item}) => {
 
         axios.post('https://adbuystore.000webhostapp.com/phprestapi/api/product/delete.php', { id:item.id,})
          
-          
-          
+      };
+      const updateClick = async () => {
+
+        axios.post('https://adbuystore.000webhostapp.com/phprestapi/api/product/delete.php', { id:item.id,})
+         
       };
     const{user} = useSelector((state)=>state.user)
 
-   if(user.name === item.createdBy)
+ if(item.createdBy === user.name)
   return (
+    <>
     <View style={styles.productCard}>
-     <Text style={styles.name}>{item.name}</Text>
-     <Text style={styles.price}>{item.price}</Text>
-     <Text style={styles.cate}>{item.category}</Text>
-     <TouchableOpacity style={styles.edit}>
-        <Text>Edit</Text>
-     </TouchableOpacity>
+     <Text style={styles.name}>Name: {item.name}</Text>
+     <Text style={styles.price}>Price: {item.price}</Text>
+     <Text style={styles.cate}>Category: {item.category}</Text>
+     <View style={{marginLeft:120,padding:20}}>
+     <View style={styles.edit}>
+     <TouchableOpacity onPress={()=>navigation.navigate('EditProd',{item:item})}>
+        <Text style={{color:'white',textAlign:'center'}}>Edit</Text>
+     </TouchableOpacity></View>
+     <View style={styles.delete}>
      <TouchableOpacity onPress={() => deleteClick(this)}>
-        <Text>Delete</Text>
-     </TouchableOpacity>
-    </View>
+        <Text style={{color:'white',textAlign:'center'}}>Delete</Text>
+     </TouchableOpacity></View>
+     </View></View>
+    </>
   )
 }
 
@@ -41,14 +49,15 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         elevation: 8,
         backgroundColor: "#e5e5e5",
-        flexWrap: 'wrap',
+       flexWrap:'wrap',
         margin: 10,
     
       },
       name:{
         color:'black',
         fontSize:15,
-        padding:5
+        padding:5,
+  
       },
       price:{
         color:"black",
@@ -59,5 +68,18 @@ const styles = StyleSheet.create({
         color:'black',
         fontSize:15,
         padding:5
+      },
+      delete:{
+            backgroundColor:'crimson',
+            borderRadius:5,
+            height:30
+            
+      },
+      edit:{
+        backgroundColor:'blue',
+        borderRadius:5,
+        height:30,
+        width:50
+        
       }
 })

@@ -1,27 +1,18 @@
-import React, { useState} from "react";
-import { Text, View, StyleSheet, Button, ScrollView, Dimensions,TextInput,TouchableOpacity,Image} from 'react-native';
-import axios from 'axios';
+import { Dimensions, StyleSheet, Text, View,TextInput,Button} from 'react-native'
 import SelectList from 'react-native-dropdown-select-list';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import { useSelector } from "react-redux";
-
-
-
+import React from 'react'
+import axios from 'axios';
 var height = Dimensions.get('window').height;
 var {width} = Dimensions.get('window')
-export default function CreateProd({navigation}) {
-
-
-  const{user} = useSelector((state)=>state.user)
-  
-  const [name, setName] = React.useState('');
-  const [price, setPrice] = React.useState('');
-  const [description, setDescription] = React.useState('');
-  const [category, setCategory] = React.useState('');
-  const [images, setImages] = React.useState('');
-  const [stock, setStock] = React.useState('');
-  const [createdBy] = React.useState(user.name);
-
+const EditProd = ({route}) => {
+    const [name, setName] = React.useState(route.params.item.name);
+  const [price, setPrice] = React.useState(route.params.item.price);
+  const [description, setDescription] = React.useState(route.params.item.description);
+  const [category, setCategory] = React.useState(route.params.item.category);
+  const [images, setImages] = React.useState(route.params.item.images);
+  const [stock, setStock] = React.useState(route.params.item.stock);
+  const [id] = React.useState(route.params.item.id);
+//cate
   const data = [
     {key:'Electronics',value:'Electronics'},
     {key:'Mens Apparel',value:'Mens Apparel'},
@@ -32,48 +23,18 @@ export default function CreateProd({navigation}) {
     {key:'Groceries',value:'Groceries'},
     
   ];
+  const updateClick = async () => {
 
-
-  const createClick = async () => {
-
-    axios.post('https://adbuystore.000webhostapp.com/phprestapi/api/product/create.php', { name: name, price: price, description: description, category: category, stock: stock, images:images,createdBy:createdBy})
-      .then(response => alert('product added')).catch(function(error) {
+    axios.post('https://adbuystore.000webhostapp.com/phprestapi/api/product/update.php', {id:id, name: name, price: price, description: description, category: category, stock: stock, images:images})
+      .then(response => alert('product updated')).catch(function(error) {
         console.log('There has been a problem adding the product' + error.message);
          // ADD THIS THROW error
           throw alert('There has been a problem adding the product');});
 
   };
-
-  //image picker
- const openGallery=()=>{
-let options={
-  storageOption:{
-    path:'images',
-    mediaType:'photo',
-    quality:0.5
-  },
-  includeBase64:true,
-};
-launchImageLibrary(options, response =>{
-    console.log('Response = ', response);
-    if (response.didCancel) {
-      console.log('User cancelled image picker');
-    } else if (response.error) {
-      console.log('ImagePicker Error: ', response.error);
-    }else {
-      const source ={uri:'data:image/jpeg;base64,' + response.assets[0].base64};
-      setImages(source)
-    }
-  });
-}
-
-
- 
- 
-  
   return (
     <View style ={styles.container}>
-    <Text style={styles.header}>Sell Your Product!</Text>
+    <Text style={styles.header}>Update your Product</Text>
     <View style={styles.Box}>
  
         <Text style={styles.labelText}>Name:</Text>
@@ -87,10 +48,12 @@ launchImageLibrary(options, response =>{
         <TextInput
           style={styles.inputText}
           placeholder="Set price on php"
+          value={price}
           onChangeText={price => setPrice(price)}
         />
         <Text style={styles.labelText}>Category:</Text>
         <SelectList
+     
          setCategory={setCategory}
           data={data} onValueChange={category => setCategory(category)}
           dropdownStyles={{backgroundColor:'white'}}
@@ -99,6 +62,7 @@ launchImageLibrary(options, response =>{
         <Text style={styles.labelText}>Stock:</Text>
         <TextInput
           style={styles.inputText}
+          value={stock}
           placeholder="Product available stock"
           onChangeText={stock => setStock(stock)}
         />
@@ -106,12 +70,14 @@ launchImageLibrary(options, response =>{
         <TextInput
           style={styles.inputText}
           placeholder="Description"
+          value={description}
           onChangeText={description => setDescription(description)}
         />
         <Text style={styles.labelText}>Image:</Text>
         <TextInput
           style={styles.inputText}
-          placeholder="Imag url"
+          value={images}
+          placeholder="Image url"
           onChangeText={images => setImages(images)}
         />
         
@@ -120,7 +86,7 @@ launchImageLibrary(options, response =>{
     <View>
        <Button
           title="Submit"
-          onPress={() => createClick(this)}
+          onPress={() => updateClick(this)}
           style={styles.button}
           color="#6200EE"
     
@@ -132,6 +98,7 @@ launchImageLibrary(options, response =>{
   
   );
   }
+  export default EditProd;
 const styles = StyleSheet.create({
  container:{
   backgroundColor:'#f4ddd8',
@@ -181,5 +148,4 @@ imagebutton:{
 }
 
 })
-
 

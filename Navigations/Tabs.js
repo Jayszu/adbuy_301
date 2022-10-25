@@ -13,6 +13,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getWishList } from '../redux/Actions/ProductAction';
 import MyadsScreen from '../src/screens/MyadsScreen'
+import EditProd from '../src/screens/EditProd';
 
 const Tab = createBottomTabNavigator();
 
@@ -114,6 +115,7 @@ initialRouteName="Home"
 <Stack.Screen name="ProductDetails" component={ProductDetails}/>
 <Stack.Screen name="CreateProd" component={CreateProd}/>
 <Stack.Screen name="MyAds" component={MyadsScreen}/>
+<Stack.Screen name="EditProd" component={EditProd}/>
 
 </Stack.Navigator>
   )

@@ -15,7 +15,7 @@ const Myadsscreen = ({navigation}) => {
   },[])
 
   const productred =async()=>{
-    const res = await axios.get('')
+    const res = await axios.get('https://adbuystore.000webhostapp.com/phprestapi/api/product/read.php')
 
    .then(async function(res){
     setAds(res.data.products)
@@ -32,6 +32,7 @@ const Myadsscreen = ({navigation}) => {
     <View style={styles.header}>
     <Text style={styles.text}>My Advertised Products</Text>
     </View>
+    <View>
       <FlatList
       data={myads}
         keyExtractor={(item,index)=> index}
@@ -43,7 +44,7 @@ const Myadsscreen = ({navigation}) => {
         
         }}
       />
-    
+    </View>
     </View>
   )
 }
