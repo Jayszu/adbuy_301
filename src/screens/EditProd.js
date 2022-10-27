@@ -29,7 +29,7 @@ const EditProd = ({route}) => {
       .then(response => alert('product updated')).catch(function(error) {
         console.log('There has been a problem adding the product' + error.message);
          // ADD THIS THROW error
-          throw alert('There has been a problem adding the product');});
+          throw alert('There has been a problem updating the product');});
 
   };
   return (

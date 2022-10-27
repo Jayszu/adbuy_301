@@ -4,7 +4,7 @@ import axios from 'axios';
 import SelectList from 'react-native-dropdown-select-list';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import { useSelector } from "react-redux";
-
+import RNFetchBlob from "rn-fetch-blob";
 
 
 var height = Dimensions.get('window').height;
@@ -18,7 +18,7 @@ export default function CreateProd({navigation}) {
   const [price, setPrice] = React.useState('');
   const [description, setDescription] = React.useState('');
   const [category, setCategory] = React.useState('');
-  const [images, setImages] = React.useState('');
+  const [images, setImages] = React.useState('https://bitsofco.de/content/images/2018/12/broken-1.png');
   const [stock, setStock] = React.useState('');
   const [createdBy] = React.useState(user.name);
 
@@ -66,6 +66,7 @@ launchImageLibrary(options, response =>{
     }
   });
 }
+
 
 
  

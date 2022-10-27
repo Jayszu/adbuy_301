@@ -21,7 +21,7 @@ const WishListScreen = ({navigation}) => {
   },[])
 
   const wishlistres =async()=>{
-    const res = await axios.get('')
+    const res = await axios.get('https://adbuystore.000webhostapp.com/phprestapi/api/wishlist/getWishlist.php')
 
    .then(async function(res){
     setWishlist(res.data.products); 
@@ -64,12 +64,12 @@ export default WishListScreen
 const styles = StyleSheet.create({
   header:{
     fontSize:30,
-    color:'black',
+    color:'white',
     fontWeight:'700',
     padding:12
   },
   header1:{
-   backgroundColor:'red',
+   backgroundColor:'gray',
    width:width,
    height:height/11
   }
